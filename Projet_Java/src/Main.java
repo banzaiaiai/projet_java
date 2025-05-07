@@ -21,7 +21,6 @@ public class Main  {
  */
     Menu menu = new Menu();
     System.out.println(menu.Bonjour());
-    menu.Lecture();
     menu.choix();
 
 
