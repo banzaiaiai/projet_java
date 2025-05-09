@@ -103,13 +103,73 @@ public class Menu {
             // Modifier le programe
             else if (str.equals("3")){
                 this.Lecture(this.action_3);
+                boolean toure = true;
+
                 System.out.println("Rentrer un nombre pour faire votre action");
                 str = sc.nextLine();
-                if (str.equals("1")){
+                if (str.equals("1")) {
+                    while (toure){
                     // Effectuer un Rachat
+                    System.out.println("Vous aller faire un achat, préciser si l'acheteur est une organisation ou une personne");
+                    System.out.println("(1) organisation");
+                    System.out.println("(2) personne");
+                    str = sc.nextLine();
+                    if (str.equals("1")) {
+                        // organisation
+                        boolean sous_toure = true;
+                        while (sous_toure) {
+                            System.out.println("Vous aller faire un achat avec une organisation , préciser l'achat est une organisation ou un média");
+                            System.out.println("(1) organisation");
+                            System.out.println("(2) media");
+                            str = sc.nextLine();
+                            if (str.equals("1")) {
+                                System.out.println("nom de l'acheteur : ");
+                                str=sc.nextLine();
+                                String acheteur =str;
+                                System.out.println("nom du vendeur : ");
+                                str=sc.nextLine();
+                                String vendeur = str;
+                                System.out.println("Pourcentage: ");
+                                str=sc.nextLine();
+                                String pourcentage = str;
+                                Achat.achat(acheteur,vendeur,"Medias_francais_teste/organisation-organisation.tsv",pourcentage);
+
+                                sous_toure=false;
+                            } else if (str.equals("2")) {
+
+                                sous_toure=false;
+                            } else {
+                                System.out.println("mauvaise entrer recommencer");
+                            }
+                        }
+                        toure=false;
+                    } else if (str.equals("2")) {
+                        // Personne
+                        boolean sous_toure = true;
+                        while (sous_toure) {
+                            System.out.println("Vous aller faire un achat avec une organisation , préciser l'achat est une organisation ou un média");
+                            System.out.println("(1) organisation");
+                            System.out.println("(2) media");
+                            str = sc.nextLine();
+                            if (str.equals("1")) {
+
+                                sous_toure=false;
+                            } else if (str.equals("2")) {
+
+                                sous_toure=false;
+                            } else {
+                                System.out.println("mauvaise entrer recommencer");
+                            }
+                        }
+                        toure=false;
+                    } else {
+                        System.out.println("mauvaise entrer recommencer");
+                    }
+                }
                 }
                 else if(str.equals("2")){
                     // Effectuer une Publication
+                    // A faire vérifier que toute les variables sont dans la base de donnée
                     String tous="";
                     System.out.println("Nom : ");
                     str=sc.nextLine();
