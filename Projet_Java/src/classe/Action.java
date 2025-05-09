@@ -35,11 +35,17 @@ public class Action {
 
         System.out.println("✔ Personne trouvée : " + nomComplet);
 
-        Set<String> organisations = chercherLiens("Medias_francais/personne-organisation.tsv", 1, nomComplet, 4);
+        Set<String> organisationsDirectes = chercherLiens("Medias_francais/personne-organisation.tsv", 1, nomComplet, 4);
+        Set<String> organisations = new HashSet<>();
+        for (String orga : organisationsDirectes) {
+            organisations.addAll(chercherOrganisationsLiees(orga));
+        }
+
         Set<String> medias = new HashSet<>();
         for (String organisation : organisations) {
             medias.addAll(chercherLiens("Medias_francais/organisation-media.tsv", 1, organisation, 4));
         }
+        medias.addAll(chercherLiens("Medias_francais/personne-media.tsv", 1, nomComplet, 4));
 
         if (organisations.isEmpty()) {
             System.out.println("ℹ Aucune organisation trouvée pour " + nomComplet + ".");
@@ -49,9 +55,60 @@ public class Action {
         }
 
         if (medias.isEmpty()) {
-            System.out.println("ℹ Aucun média trouvé pour les organisations liées.");
+            System.out.println("ℹ Aucun média trouvé.");
         } else {
             System.out.println("📺 Médias associés à " + nomComplet + " :");
+            medias.forEach(m -> System.out.println("- " + m));
+        }
+    }
+
+
+    // Affiche les informations d’un média : organisations et personnes liées
+    public static void afficherOrgaPrecise(String nomOrga) {
+        File organisationsFile = new File("Medias_francais/organisations.tsv");
+
+        ArrayList<String[]> organisationsList = Affichage.read(organisationsFile);
+        boolean trouve = organisationsList.stream()
+                .anyMatch(ligne -> ligne.length > 0 && ligne[0].trim().equalsIgnoreCase(nomOrga.trim()));
+
+        if (!trouve) {
+            System.out.println("❌ Organisation " + nomOrga + " non trouvée dans organisations.tsv");
+            return;
+        }
+
+        System.out.println("✔ Organisation trouvée : " + nomOrga);
+
+        Set<String> organisations = chercherOrganisationsLiees(nomOrga);
+        Set<String> personnes = new HashSet<>();
+        Set<String> medias = new HashSet<>();
+
+        for (String organisation : organisations) {
+            personnes.addAll(chercherLiens("Medias_francais/personne-organisation.tsv", 4, organisation, 1));
+            medias.addAll(chercherLiens("Medias_francais/organisation-media.tsv", 1, organisation, 4));
+        }
+
+        for (String media : medias) {
+            personnes.addAll(chercherLiens("Medias_francais/personne-media.tsv", 4, media, 1));
+        }
+
+        if (organisations.isEmpty()) {
+            System.out.println("ℹ Aucune organisation liée trouvée.");
+        } else {
+            System.out.println("🏢 Organisations associées à " + nomOrga + " :");
+            organisations.forEach(o -> System.out.println("- " + o));
+        }
+
+        if (personnes.isEmpty()) {
+            System.out.println("ℹ Aucune personne trouvée.");
+        } else {
+            System.out.println("👤 Personnes associées à " + nomOrga + " :");
+            personnes.forEach(p -> System.out.println("- " + p));
+        }
+
+        if (medias.isEmpty()) {
+            System.out.println("ℹ Aucun média trouvé.");
+        } else {
+            System.out.println("📺 Médias associés à " + nomOrga + " :");
             medias.forEach(m -> System.out.println("- " + m));
         }
     }
@@ -71,82 +128,34 @@ public class Action {
 
         System.out.println("✔ Média trouvé : " + nomMedia);
 
-        Set<String> organisations = chercherLiens("Medias_francais/organisation-media.tsv", 4, nomMedia, 1);
+        Set<String> organisationsDirectes = chercherLiens("Medias_francais/organisation-media.tsv", 4, nomMedia, 1);
+        Set<String> organisations = new HashSet<>();
+        for (String orga : organisationsDirectes) {
+            organisations.addAll(chercherOrganisationsLiees(orga));
+        }
+
         Set<String> personnes = new HashSet<>();
         for (String organisation : organisations) {
             personnes.addAll(chercherLiens("Medias_francais/personne-organisation.tsv", 4, organisation, 1));
         }
+        personnes.addAll(chercherLiens("Medias_francais/personne-media.tsv", 4, nomMedia, 1));
 
         if (organisations.isEmpty()) {
-            System.out.println("ℹ Aucune organisation trouvée pour le média.");
+            System.out.println("ℹ Aucune organisation trouvée.");
         } else {
             System.out.println("🏢 Organisations associées à " + nomMedia + " :");
             organisations.forEach(o -> System.out.println("- " + o));
         }
 
         if (personnes.isEmpty()) {
-            System.out.println("ℹ Aucune personne trouvée pour les organisations liées.");
+            System.out.println("ℹ Aucune personne trouvée.");
         } else {
             System.out.println("👤 Personnes associées à " + nomMedia + " :");
             personnes.forEach(p -> System.out.println("- " + p));
         }
     }
 
-    // Affiche les informations d’un média : organisations et personnes liées
-    public static void afficherOrgaPrecise(String nomOrga) {
-        File organisationsFile = new File("Medias_francais/organisations.tsv");
 
-        ArrayList<String[]> organisationsList = Affichage.read(organisationsFile);
-        boolean trouve = organisationsList.stream()
-                .anyMatch(ligne -> ligne.length > 0 && ligne[0].trim().equalsIgnoreCase(nomOrga.trim()));
-
-        if (!trouve) {
-            System.out.println("❌ Organisation " + nomOrga + " non trouvée dans organisations.tsv");
-            return;
-        }
-
-        System.out.println("✔ Organisation trouvée : " + nomOrga);
-
-        // Récupère les organisations liées dans les deux sens (source et cible)
-        Set<String> organisations = new HashSet<>();
-        organisations.addAll(chercherLiens("Medias_francais/organisation-organisation.tsv", 1, nomOrga, 4));
-        organisations.addAll(chercherLiens("Medias_francais/organisation-organisation.tsv", 4, nomOrga, 1));
-
-        // Récupère les personnes et médias liées à ces organisations
-        Set<String> personnes = new HashSet<>();
-        Set<String> medias = new HashSet<>();
-        for (String organisation : organisations) {
-            personnes.addAll(chercherLiens("Medias_francais/personne-organisation.tsv", 4, organisation, 1));
-            medias.addAll(chercherLiens("Medias_francais/organisation-media.tsv", 1, organisation, 4));
-            personnes.addAll(chercherLiens("Medias_francais/personne-organisation.tsv", 4, nomOrga, 1));
-            medias.addAll(chercherLiens("Medias_francais/organisation-media.tsv", 1, nomOrga, 4));
-
-        }
-        for (String media : medias){
-            personnes.addAll(chercherLiens("Medias_francais/personne-media.tsv",4,media,1));
-        }
-
-        if (organisations.isEmpty()) {
-            System.out.println("ℹ Aucune organisation liée trouvée.");
-        } else {
-            System.out.println("🏢 Organisations associées à " + nomOrga + " :");
-            organisations.forEach(o -> System.out.println("- " + o));
-        }
-
-        if (personnes.isEmpty()) {
-            System.out.println("ℹ Aucune personne trouvée pour les organisations liées.");
-        } else {
-            System.out.println("👤 Personnes associées à " + nomOrga + " :");
-            personnes.forEach(p -> System.out.println("- " + p));
-        }
-
-        if (medias.isEmpty()) {
-            System.out.println("ℹ Aucun média trouvé pour les organisations liées.");
-        } else {
-            System.out.println("📺 Médias associés à " + nomOrga + " :");
-            medias.forEach(m -> System.out.println("- " + m));
-        }
-    }
 
 
     // Méthode générique pour faire des recherches dans les fichiers TSV
@@ -163,4 +172,30 @@ public class Action {
         }
         return resultats;
     }
+
+    public static Set<String> chercherOrganisationsLiees(String organisationInitiale) {
+        Set<String> toutesOrganisations = new HashSet<>();
+        Queue<String> aExplorer = new LinkedList<>();
+
+        aExplorer.add(organisationInitiale);
+        toutesOrganisations.add(organisationInitiale);
+
+        while (!aExplorer.isEmpty()) {
+            String organisation = aExplorer.poll();
+
+            Set<String> voisines = new HashSet<>();
+            voisines.addAll(chercherLiens("Medias_francais/organisation-organisation.tsv", 1, organisation, 4));
+            voisines.addAll(chercherLiens("Medias_francais/organisation-organisation.tsv", 4, organisation, 1));
+
+            for (String voisine : voisines) {
+                if (!toutesOrganisations.contains(voisine)) {
+                    toutesOrganisations.add(voisine);
+                    aExplorer.add(voisine);
+                }
+            }
+        }
+
+        return toutesOrganisations;
+    }
+
 }
