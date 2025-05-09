@@ -51,7 +51,7 @@ public class Achat {
 
         }
         else {
-            Modification.ajouterligne(fichier,00+"\t"+acheteur+"\t"+"possede"+"\t"+valeur+"\t"+vendeur);
+            Modification.ajouterligne(fichier,00+"\t"+acheteur+"\t"+"possede"+"\t"+valeur+"\t"+vendeur+"\t");
         }
     }
 }
