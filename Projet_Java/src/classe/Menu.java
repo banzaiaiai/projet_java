@@ -123,6 +123,7 @@ public class Menu {
                             System.out.println("(2) media");
                             str = sc.nextLine();
                             if (str.equals("1")) {
+                                // L'ajout exite cependant on peux que acheter des trucs qui sont pas posséder, il faux quand même vérifier que les deux variables existe et demander si on veux vraimment ajouter une ligne
                                 System.out.println("nom de l'acheteur : ");
                                 str=sc.nextLine();
                                 String acheteur =str;

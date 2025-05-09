@@ -2,12 +2,13 @@ package classe;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Achat {
 
     public static void achat(String acheteur, String vendeur, String fichier, String valeur){
-
+        Scanner sc = new Scanner(System.in);
         boolean posseder = false;
 
         File organisation_organisation_file = new File("Medias_francais_teste/organisation-organisation.tsv");
@@ -46,12 +47,22 @@ public class Achat {
                 posseder = true;
             }
         }
-        System.out.println(posseder);
-        if (posseder){
 
+        if (posseder){
+            // vérifier si achat possible
         }
         else {
-            Modification.ajouterligne(fichier,00+"\t"+acheteur+"\t"+"égale à"+"\t"+valeur+"%"+"\t"+vendeur+"\t");
+            // L'objet n'est posséder par perssone donc l'achat est possible il faux aprés vérier que
+            // l'acheteur est le vendeur existe
+            String str;
+            System.out.println("Vous aller ajouter une ligne vous êtes sur : yes/no");
+            str= sc.nextLine();
+            if (str.equals("yes")) {
+                Modification.ajouterligne(fichier, 00 + "\t" + acheteur + "\t" + "égale à" + "\t" + valeur + "%" + "\t" + vendeur + "\t");
+            }
+            else {
+                System.out.println("Pas de modifications l'achat a été anuler retour au menu");
+            }
         }
     }
 }
