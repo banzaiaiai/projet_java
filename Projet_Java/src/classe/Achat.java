@@ -38,7 +38,7 @@ public class Achat {
                     }
 
                     if (pourcentageActuel < valeur) {
-                        System.out.println("❌ Le vendeur ne possède pas assez de parts pour vendre " + valeur + "%.");
+                        System.out.println("❌ L e vendeur ne possède pas assez de parts pour vendre " + valeur + "%.");
                         return;
                     }
 
