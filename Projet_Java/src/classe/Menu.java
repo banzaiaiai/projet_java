@@ -130,10 +130,13 @@ public class Menu {
                                 System.out.println("nom du vendeur : ");
                                 str=sc.nextLine();
                                 String vendeur = str;
+                                System.out.println("nom du bien acheter/vendue : ");
+                                str=sc.nextLine();
+                                String bien = str;
                                 System.out.println("Pourcentage: ");
                                 str=sc.nextLine();
                                 String pourcentage = str;
-                                Achat.achat(acheteur,vendeur,"Medias_francais_teste/organisation-organisation.tsv",pourcentage);
+                                Achat.achat(acheteur,vendeur,bien, Double.parseDouble(pourcentage));
 
                                 sous_toure=false;
                             } else if (str.equals("2")) {
