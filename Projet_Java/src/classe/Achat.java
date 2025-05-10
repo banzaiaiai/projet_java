@@ -73,6 +73,7 @@ public class Achat {
                     }
 
                     // Écrire le fichier mis à jour
+                    //Modification.normaliserLignes(chemin,lignes);
                     Modification.ecrireFichierTSV(chemin, lignes);
 
                     System.out.println("✅ Achat effectué : " + acheteur + " a acheté " + valeur + "% de " + bien + " à " + vendeur);
