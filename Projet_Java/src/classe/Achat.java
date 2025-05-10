@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Achat {
 
-    public static void achat(String acheteur, String vendeur, String bien, double valeur) {
+    public static void achat(String acheteur, String vendeur, String bien, double valeur, String FichierCible) {
         Scanner sc = new Scanner(System.in);
 
         // Fichiers TSV à traiter
@@ -89,11 +89,8 @@ public class Achat {
             System.out.println("➡ Voulez-vous créer une nouvelle possession pour " + acheteur + " ? (yes/no)");
             String confirmation = sc.nextLine();
             if (confirmation.equalsIgnoreCase("yes")) {
-                String cheminCible = fichiers[0]; // par défaut dans organisation-organisation.tsv
-                String[] ligne = {"00", acheteur, "égale à", valeur + "%", bien};
-                ArrayList<String[]> lignes = Affichage.read(new File(cheminCible));
-                lignes.add(ligne);
-                Modification.ecrireFichierTSV(cheminCible, lignes);
+                String ligneEcrite = "00"+"\t"+acheteur+"\t"+"égale à"+"\t"+valeur + "%"+"\t"+bien+"\t";
+                Modification.ajouterligne(FichierCible,ligneEcrite);
                 System.out.println("✅ Possession ajoutée.");
             } else {
                 System.out.println("❌ Achat annulé.");

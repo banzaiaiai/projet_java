@@ -136,7 +136,7 @@ public class Menu {
                                 System.out.println("Pourcentage: ");
                                 str=sc.nextLine();
                                 String pourcentage = str;
-                                Achat.achat(acheteur,vendeur,bien, Double.parseDouble(pourcentage));
+                                Achat.achat(acheteur,vendeur,bien, Double.parseDouble(pourcentage),"Medias_francais_teste/organisation-organisation.tsv");
 
                                 sous_toure=false;
                             } else if (str.equals("2")) {
