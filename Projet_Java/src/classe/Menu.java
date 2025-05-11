@@ -1,5 +1,6 @@
 package classe;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,12 +10,16 @@ public class Menu {
     private ArrayList<String> action_1 = new ArrayList<>();
     private ArrayList<String> action_2 = new ArrayList<>();
     private ArrayList<String> action_3 = new ArrayList<>();
+
+
+
     Scanner sc = new Scanner(System.in);
 
     public Menu() {
         this.Menu_1();
         this.Menu_2();
         this.Menu_3();
+
     }
 
     public void Menu_1() {
@@ -158,9 +163,11 @@ public class Menu {
 
         try {
             double pourcentage = Double.parseDouble(pourcentageStr);
-            System.out.print("Chemin du fichier TSV (ex: Medias_francais_teste/organisation-media.tsv) : ");
+
+            System.out.print("Chemin du fichier TSV (ex: organisation-media) : ");
             String chemin = sc.nextLine();
-            Achat.achat(acheteur, vendeur, bien, pourcentage, chemin);
+            Achat.achat(acheteur, vendeur, bien, pourcentage,chemin);
+
         } catch (NumberFormatException e) {
             System.out.println("Erreur : Le pourcentage doit être un nombre.");
         }
@@ -183,6 +190,7 @@ public class Menu {
 
         System.out.println("Ligne ajoutée : " + ligne);
         Modification.ajouterligne("Medias_francais_teste/publication.tsv", ligne.toString());
+
         System.out.println("Publication enregistrée.");
     }
 }
