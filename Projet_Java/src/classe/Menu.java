@@ -174,23 +174,7 @@ public class Menu {
     }
 
     private void effectuerPublication() {
-        StringBuilder ligne = new StringBuilder();
-        System.out.print("Nom : ");
-        ligne.append(sc.nextLine()).append("\t");
-        System.out.print("Type : ");
-        ligne.append(sc.nextLine()).append("\t");
-        System.out.print("Média : ");
-        ligne.append(sc.nextLine()).append("\t");
-        System.out.print("Personne liée : ");
-        ligne.append(sc.nextLine()).append("\t");
-        System.out.print("Média liée : ");
-        ligne.append(sc.nextLine()).append("\t");
-        System.out.print("Organisation liée : ");
-        ligne.append(sc.nextLine());
+        Publication publication = Publication.effectuerPublication();
 
-        System.out.println("Ligne ajoutée : " + ligne);
-        Modification.ajouterligne("Medias_francais_teste/publication.tsv", ligne.toString());
-
-        System.out.println("Publication enregistrée.");
     }
 }
