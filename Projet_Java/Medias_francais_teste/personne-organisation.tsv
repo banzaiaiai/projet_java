@@ -11,7 +11,7 @@ id	origine	qualificatif	valeur	cible	commentaire
 13	Claude Perdriel	participe		Groupe L’Opinion
 21	Claude Perdriel	contrôle		Groupe Perdriel
 6	Daniel Křetínský	égal à	50.00%	Czech Media Invest
-47	Daniel Křetínský	égal à	5.00%	Groupe TF1
+47	Daniel Křetínský	égal à	2.0%	Groupe TF1
 24	Édouard Coudurier	contrôle		Groupe Télégramme
 33	Famille Baudecroux	égal à	69.1%	NRJ Group
 17	Famille Baylet	égal à	68.00%	Groupe La Dépêche
@@ -24,20 +24,22 @@ id	origine	qualificatif	valeur	cible	commentaire
 4	Famille Mohn	contrôle		Bertelsmann
 20	Famille Saint-Cricq	égal à	15.00%	Groupe NRCO
 7	Franck Julien	contrôle		Edi Invest
-2	François Pinault	égal à	57.00%	Artémis
+2	François Pinault	égal à	7.0%	Artémis
 10	Georges Ghosn	égal à	100.00%	Ghosn Capital
 25	Jean Christophe Tortora	contrôle		Hima Groupe
 16	Ken Fisher	participe		Groupe L’Opinion
 30	Madison Cox	égal à	100.00%	Berlys Media
-31	Matthieu Pigasse	égal à	78.00%	Combat Solutions
+31	Matthieu Pigasse	égal à	28.0%	Combat Solutions
 15	Nicolas Beytout	participe		Groupe L’Opinion
-1	Patrick Drahi	égal à	92.00%	Altice
+1		égal à	42.0%	Altice
 8	Philippe Hersant	égal à	100.00%	Éditions Suisses Holding
 49	Rodolphe Saadé	égal à	73.00%	CMA CGM
 52	Rodolphe Saadé	égal à	100.00%	Altice Média
 9	Vincent Bolloré	contrôle		Bolloré
 29	Xavier Niel	contrôle		Fonds pour l'indépendance de la presse
 51	Xavier Niel	contrôle		NJJ
-38	Xavier Niel	contrôle		Fonds pour l'indépendance de la presse
-51	Xavier Niel	contrôle		NJJ
 00	Daniel Křetínský	égale à	10.0%	NRJ Group
+00	Xavier Niel	égale à	50.0%	Altice
+00	Xavier Niel	égale à	50.0%	Combat Solutions
+00	Xavier Niel	égale à	50.0%	Artémis
+00	Xavier Niel	égale à	3.0%	Groupe TF1

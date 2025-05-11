@@ -105,6 +105,12 @@ public class Publication {
 
         System.out.println("Publication enregistrée.");
         Publication publication = new Publication(nom,type,media,personnelie,medialie,organisationlie);
+
+        // 🔔 Notification de l'événement
+        PublicationEvenement evt = new PublicationEvenement(media, personnelie);
+        GestionnaireEvenements.notifier(evt);
+
+
         return publication;
     }
 }

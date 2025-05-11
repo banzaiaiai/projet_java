@@ -26,6 +26,7 @@ public class Menu {
         action_1.add("(1) Lire un fichier");
         action_1.add("(2) Afficher une entité");
         action_1.add("(3) Effectuer un événement");
+        action_1.add("(4) Effectuer un suivi");
         action_1.add("(0) Fin du programme");
     }
 
@@ -70,6 +71,9 @@ public class Menu {
                     break;
                 case "3":
                     effectuerEvenement();
+                    break;
+                case "4":
+                    activerSuivi();
                     break;
                 case "0":
                     continuer = false;
@@ -163,15 +167,30 @@ public class Menu {
 
         try {
             double pourcentage = Double.parseDouble(pourcentageStr);
-
-            System.out.print("Chemin du fichier TSV (ex: organisation-media) : ");
-            String chemin = sc.nextLine();
-            Achat.achat(acheteur, vendeur, bien, pourcentage,chemin);
+            Achat.achat(acheteur, vendeur, bien, pourcentage);
 
         } catch (NumberFormatException e) {
             System.out.println("Erreur : Le pourcentage doit être un nombre.");
         }
     }
+    public void activerSuivi() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Vouler vous suivre une personne (1) ou un media (2)");
+        String str =sc.nextLine();
+        switch (str){
+            case "1":
+                System.out.println("Entrez le nom de la personne à suivre :");
+                String nom = sc.nextLine();
+                GestionnaireEvenements.ajouterModule(new ModuleSuiviPersonne(nom));
+                break;
+            case "2":
+                System.out.println("Entrez le nom du média à suivre :");
+                String media = sc.nextLine();
+                GestionnaireEvenements.ajouterModule(new ModuleSuiviMedia(media));
+                break;
+        }
+    }
+
 
     private void effectuerPublication() {
         Publication publication = Publication.effectuerPublication();

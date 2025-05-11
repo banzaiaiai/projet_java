@@ -184,8 +184,6 @@ public class Action {
 
             Set<String> voisines = new HashSet<>();
             voisines.addAll(chercherLiens("Medias_francais_teste/organisation-organisation.tsv", 1, organisation, 4));
-            voisines.addAll(chercherLiens("Medias_francais_teste/organisation-organisation.tsv", 4, organisation, 1));
-
             for (String voisine : voisines) {
                 if (!toutesOrganisations.contains(voisine)) {
                     toutesOrganisations.add(voisine);
