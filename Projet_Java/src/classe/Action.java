@@ -19,7 +19,12 @@ public class Action {
         }
     }
 
-    // Affiche les informations d'une personne : organisations et médias liés
+
+
+    /**
+     *  Affiche les informations d'une personne : organisations et médias liés
+     * @param nomComplet nom de la personne a sélectionner
+     */
     public static void afficherPersonnePrecise(String nomComplet) {
         File personnesFile = new File("Medias_francais_teste/personnes.tsv");
 
@@ -62,7 +67,10 @@ public class Action {
     }
 
 
-    // Affiche les informations d’un média : organisations et personnes liées
+    /***
+     * Affiche les informations d’un média : organisations et personnes liées
+     * @param nomOrga entité choisi pour l'affichage
+     */
     public static void afficherOrgaPrecise(String nomOrga) {
         File organisationsFile = new File("Medias_francais_teste/organisations.tsv");
 
@@ -112,7 +120,10 @@ public class Action {
         }
     }
 
-    // Affiche les informations d’un média : organisations et personnes liées
+    /***
+     * // Affiche les informations d’un média : organisations et personnes liées
+     * @param nomMedia entité choisit pour affichage
+     */
     public static void afficherMediaPrecise(String nomMedia) {
         File mediasFile = new File("Medias_francais_teste/medias.tsv");
 
@@ -157,7 +168,16 @@ public class Action {
 
 
 
-    // Méthode générique pour faire des recherches dans les fichiers TSV
+
+
+    /***
+     * Méthode générique pour faire des recherches dans les fichiers TSV
+     * @param fichier fichier cible
+     * @param colonneRecherche colone de l'entité qui recherche
+     * @param valeurRecherchee entité qui est chercher
+     * @param colonneResultat colone ou la valeurRecherche se trouve
+     * @return
+     */
     public static Set<String> chercherLiens(String fichier, int colonneRecherche, String valeurRecherchee, int colonneResultat) {
         Set<String> resultats = new HashSet<>();
         File file = new File(fichier);
@@ -172,6 +192,11 @@ public class Action {
         return resultats;
     }
 
+    /***
+     * Chercher toutes les organisations liée a une organisation
+     * @param organisationInitiale l'organisation de depart
+     * @return l'ensemble des organisation liée a l'organisation initiale
+     */
     public static Set<String> chercherOrganisationsLiees(String organisationInitiale) {
         Set<String> toutesOrganisations = new HashSet<>();
         Queue<String> aExplorer = new LinkedList<>();

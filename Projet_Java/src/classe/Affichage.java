@@ -8,6 +8,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Affichage {
+    /***
+     * Récupére les ligne d'un fichier
+     * @param test2 le fichier cible
+     * @return la list des lignes
+     */
     public static ArrayList<String[]> read(File test2) {
         ArrayList<String[]> Data = new ArrayList<>(); //initializing a new ArrayList out of String[]'s
         try (BufferedReader TSVReader = new BufferedReader(new FileReader(test2))) {
@@ -21,6 +26,11 @@ public class Affichage {
         }
         return Data;
     }
+
+    /***
+     * affiche tout le contenue d'un ficher
+     * @param name le fichier cible
+     */
     public static void affiche(String name){
         System.out.println(new File(".").getAbsolutePath());
         File file = new File("Medias_francais_teste/"+name+".tsv");
@@ -30,6 +40,12 @@ public class Affichage {
 
     }
 
+    /***
+     * Affiche les donnée qui concerne un type particulier
+     * @param type media/personne/organisation
+     * @param file fichier cible
+     * @return entité choisit
+     */
     public static String afichageParticulier(String type, String file){
         Scanner sc = new Scanner(System.in);
         String str;

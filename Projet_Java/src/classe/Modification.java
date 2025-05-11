@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Modification {
+    /**
+     * Permet d'ajouter en denier une ligne a un fichier
+     * @param filePath le nom du fichier a modifier
+     * @param data la ligne a ajouter elle est séparer des "\t"
+     */
     public static void ajouterligne(String filePath, String data) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
             System.out.println("réussi");
@@ -15,6 +20,12 @@ public class Modification {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Permet de modifier un FichiTSV
+     * @param chemin le nom du fichier a modifier
+     * @param lignesla ligne a ajouter
+     */
     public static void ecrireFichierTSV(String chemin, ArrayList<String[]> lignes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(chemin))) {
             for (String[] ligne : lignes) {

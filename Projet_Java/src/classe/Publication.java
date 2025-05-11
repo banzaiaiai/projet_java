@@ -79,6 +79,10 @@ public class Publication {
         this.mediaLiee = mediaLiee;
     }
 
+    /**
+     * Pemet de faire une publication
+     * @return objet représantant une publication
+     */
     public static Publication effectuerPublication() {
         StringBuilder ligne = new StringBuilder();
         System.out.print("Nom : ");

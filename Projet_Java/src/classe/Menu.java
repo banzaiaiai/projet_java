@@ -53,6 +53,10 @@ public class Menu {
         }
     }
 
+    /***
+     * lance le menue de base
+     * @throws IOException
+     */
     public void lancerMenu() throws IOException {
         boolean continuer = true;
 
@@ -85,6 +89,10 @@ public class Menu {
         }
     }
 
+    /***
+     * lie un fichier particulier
+     * @throws IOException
+     */
     private void lireFichier() throws IOException {
         Action.afficherFichier();
         System.out.print("Choisissez votre document : ");
@@ -92,6 +100,9 @@ public class Menu {
         Affichage.affiche(document);
     }
 
+    /***
+     * permet de choisir quel entité ont va afficher
+     */
     private void afficherEntites() {
         boolean retour = false;
         while (!retour) {
@@ -131,6 +142,9 @@ public class Menu {
         }
     }
 
+    /***
+     * permet de faire un Evvenement particulier
+     */
     private void effectuerEvenement() {
         boolean retour = false;
         while (!retour) {
@@ -155,6 +169,9 @@ public class Menu {
         }
     }
 
+    /***
+     * permet de faire un achat
+     */
     private void effectuerAchat() {
         System.out.print("Acheteur : ");
         String acheteur = sc.nextLine();
@@ -173,6 +190,10 @@ public class Menu {
             System.out.println("Erreur : Le pourcentage doit être un nombre.");
         }
     }
+
+    /***
+     * active le suivi d'un media/personne
+     */
     public void activerSuivi() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Vouler vous suivre une personne (1) ou un media (2)");
@@ -191,7 +212,9 @@ public class Menu {
         }
     }
 
-
+    /***
+     * permet de faire une publication
+     */
     private void effectuerPublication() {
         Publication publication = Publication.effectuerPublication();
 

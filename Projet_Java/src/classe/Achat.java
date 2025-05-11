@@ -4,7 +4,13 @@ import java.io.File;
 import java.util.*;
 
 public class Achat {
-
+    /**
+     * permet de faire un achat
+     * @param acheteur entité qui achéte
+     * @param vendeur entité qui vend
+     * @param bien entité ciblé par l'échange
+     * @param valeur valeur de la vente 
+     */
     public static void achat(String acheteur, String vendeur, String bien, double valeur) {
         String[] fichiers = {
                 "Medias_francais_teste/organisation-organisation.tsv",

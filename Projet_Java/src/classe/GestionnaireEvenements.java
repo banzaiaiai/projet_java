@@ -13,6 +13,10 @@ public class GestionnaireEvenements {
         modules.add(module);
     }
 
+    /***
+     * Notifier la vigie d'un cas particulier
+     * @param evt evenement qui a us lieux
+     */
     public static void notifier(Evenement evt) {
         boolean estSurveille = false;
 
@@ -105,6 +109,12 @@ public class GestionnaireEvenements {
 
     }
 
+    /***
+     * calcule le pourcentage que posséde une personne
+     * @param personne personne qui posséde
+     * @param bien le bien posséder
+     * @return valeur en pourcentage du bien
+     */
     private static double calculerPourcentageTotal(String personne, String bien) {
         String[] fichiers = {
                 "Medias_francais_teste/organisation-organisation.tsv",
@@ -131,8 +141,12 @@ public class GestionnaireEvenements {
         return total;
     }
 
+    /***
+     * enregistre une transaction
+     * @param evt prend un événement particulier
+     */
     private static void enregistrerTransaction(AchatEvenement evt) {
-        File fichier = new File("transactions_surveillees.tsv");
+        File fichier = new File("Medias_francais_teste/transactions_surveillees.tsv");
         try (FileWriter fw = new FileWriter(fichier, true);
              BufferedWriter bw = new BufferedWriter(fw)) {
             String ligne = evt.getAcheteur() + "\t" + evt.getCible() + "\t" + evt.getType() + "\n";
